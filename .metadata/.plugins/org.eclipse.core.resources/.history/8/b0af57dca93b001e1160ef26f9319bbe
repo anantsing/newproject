@@ -1,0 +1,43 @@
+package test;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BootStrapDropDown {
+	public static void main(String[] args){
+	
+ WebDriverManager.chromedriver().setup();
+	ChromeOptions options = new ChromeOptions();
+	options.addArguments("----incoginto");
+	
+	WebDriver driver = new ChromeDriver(options);
+	driver.get("http://seleniumpractise.blogspot.com/2016/08/bootstrap-dropdown-example-for-selenium.html");
+	
+	WebElement dropdown = driver.findElement(By.xpath("//button[@id=\"menu1\"]"));
+	dropdown.click();
+	
+	List<WebElement>dropDownlist = driver.findElements(By.xpath("//ul[@class='dropdown-menu']/li/a"));
+	
+	for(WebElement ele:dropDownlist) {
+		
+		String dropDownValue = ele.getText();
+		
+		if(dropDownValue.equals("CSS")) {
+			ele.click();
+			break;
+		}
+	}
+
+	
+	
+	
+
+}
+}
